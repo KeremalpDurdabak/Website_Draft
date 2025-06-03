@@ -18,3 +18,13 @@ Static assets (CSS, JavaScript and placeholder images) are stored in the `assets
 3. Swap the header logo by replacing the text `<h1>Ammo Corp</h1>` with an `<img>` element pointing to your logo.
 
 No build process is required; simply open the HTML files in a browser to view the site.
+
+## Local preview
+
+To see the pages without deploying them, either open `index.html` directly or start a temporary server:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then browse to <http://localhost:8000/>.
