@@ -18,6 +18,12 @@ header, footer {
     padding: 1rem 0;
 }
 
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 nav ul {
     list-style: none;
     display: flex;
@@ -64,6 +70,34 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.feature {
+    flex: 1 1 300px;
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.feature img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
 }
 
 .product-item {
