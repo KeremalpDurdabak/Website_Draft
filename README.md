@@ -12,9 +12,9 @@ Static assets (CSS, JavaScript and placeholder images) are stored in the `assets
 ## Customization
 
 
-1. The carousel uses remote placeholder images from `via.placeholder.com`.
-   Update the `<img>` `src` attributes in `index.html` with your own image URLs
-   or local files.
+1. The pages use placeholder images from [Picsum](https://picsum.photos).
+   Replace the `src` attributes on any `<img>` elements with your own URLs or
+   local files when you're ready.
 
 
 2. Update the company name and text content in each HTML file to suit your needs.
