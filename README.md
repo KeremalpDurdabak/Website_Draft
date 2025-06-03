@@ -20,5 +20,9 @@ Static assets (CSS, JavaScript and placeholder images) are stored in the `assets
 2. Update the company name and text content in each HTML file to suit your needs.
 3. Swap the header logo by replacing the text `<h1>Ammo Corp</h1>` with an `<img>` element pointing to your logo.
 
+4. Product listings and details are generated from `assets/js/product-data.js`.
+   Add new products by editing that file; each entry will automatically appear
+   on the products page and have its own detail view.
+
 No build process is required; simply open the HTML files in a browser to view the site.
 

@@ -46,15 +46,6 @@ nav a {
     height: auto;
 }
 
-.hero .caption {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: #fff;
-    background: rgba(0,0,0,0.5);
-    padding: 1rem;
-    border-radius: 5px;
-}
 
 section {
     padding: 2rem 0;
@@ -101,6 +92,13 @@ section {
     border-radius: 5px;
 }
 
+#product-detail img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
 .contact-form {
     max-width: 600px;
     margin: auto;
@@ -127,6 +125,17 @@ section {
 .carousel-item {
     min-width: 100%;
     flex-shrink: 0;
+    position: relative;
+}
+
+.slide-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 1rem;
+    border-radius: 5px;
 }
 
 @media (max-width: 600px) {
