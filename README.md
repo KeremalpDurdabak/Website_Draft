@@ -26,5 +26,9 @@ Static assets (CSS, JavaScript and placeholder images) are stored in the `assets
    Add new products by editing that file; each entry will automatically appear
    on the products page and have its own detail view.
 
+4. Product listings and details are generated from `assets/js/product-data.js`.
+   Add new products by editing that file; each entry will automatically appear
+   on the products page and have its own detail view.
+
 No build process is required; simply open the HTML files in a browser to view the site.
 
