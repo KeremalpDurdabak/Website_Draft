@@ -9,14 +9,22 @@ function initCarousel() {
   const createSlide = (item) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-item';
+
+    const link = document.createElement('a');
+    link.href = `slide-detail.html?id=${item.id}`;
+
     const img = document.createElement('img');
     img.src = item.image;
     img.alt = 'Carousel slide';
+    img.draggable = false;
+
     const text = document.createElement('div');
     text.className = 'slide-text';
     text.textContent = item.text;
-    slide.appendChild(img);
-    slide.appendChild(text);
+
+    link.appendChild(img);
+    link.appendChild(text);
+    slide.appendChild(link);
     return slide;
   };
 
@@ -60,19 +68,23 @@ function initCarousel() {
   let isDragging = false;
   let startX = 0;
   let moveX = 0;
+  let hasMoved = false;
 
   const getEventX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
 
   const startDrag = (e) => {
+    e.preventDefault();
     isDragging = true;
     startX = getEventX(e);
     moveX = 0;
+    hasMoved = false;
     track.style.transition = 'none';
   };
 
   const duringDrag = (e) => {
     if (!isDragging) return;
     moveX = getEventX(e) - startX;
+    if (Math.abs(moveX) > 5) hasMoved = true;
     const movePercent = (moveX / slideWidth) * 100;
     track.style.transform = `translateX(calc(-${index * 100}% + ${movePercent}%))`;
   };
@@ -91,6 +103,7 @@ function initCarousel() {
   track.addEventListener('mousedown', startDrag);
   track.addEventListener('touchstart', startDrag, { passive: true });
   window.addEventListener('mousemove', duringDrag);
+  track.addEventListener("click", (e) => { if (hasMoved) e.preventDefault(); }, true);
   window.addEventListener('touchmove', duringDrag, { passive: true });
   window.addEventListener('mouseup', endDrag);
   window.addEventListener('touchend', endDrag);
