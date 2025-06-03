@@ -12,13 +12,17 @@ Static assets (CSS, JavaScript and placeholder images) are stored in the `assets
 ## Customization
 
 
-1. The carousel uses remote placeholder images from `via.placeholder.com`.
-   Update the `<img>` `src` attributes in `index.html` with your own image URLs
-   or local files.
+1. The pages use placeholder images from [Picsum](https://picsum.photos).
+   Replace the `src` attributes on any `<img>` elements with your own URLs or
+   local files when you're ready.
 
 
 2. Update the company name and text content in each HTML file to suit your needs.
 3. Swap the header logo by replacing the text `<h1>Ammo Corp</h1>` with an `<img>` element pointing to your logo.
+
+4. Product listings and details are generated from `assets/js/product-data.js`.
+   Add new products by editing that file; each entry will automatically appear
+   on the products page and have its own detail view.
 
 No build process is required; simply open the HTML files in a browser to view the site.
 
