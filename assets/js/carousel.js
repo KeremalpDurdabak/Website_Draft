@@ -145,7 +145,15 @@ function initCarousel() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', initCarousel);
+function onReady(fn) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fn);
+  } else {
+    fn();
+  }
+}
+
+onReady(initCarousel);
 
 function updateCarouselLang(lang) {
   document.querySelectorAll('.carousel-track .carousel-item').forEach(slide => {
