@@ -1,20 +1,41 @@
+// Build an interactive carousel with seamless looping
 function initCarousel() {
   const track = document.querySelector('.carousel-track');
   const nextBtn = document.querySelector('.carousel-button.next');
   const prevBtn = document.querySelector('.carousel-button.prev');
-  if (!track) return;
+  if (!track || !Array.isArray(slideData)) return;
+  track.innerHTML = '';
 
-  const originalSlides = Array.from(track.children);
-  if (originalSlides.length === 0) return;
+  const createSlide = (item) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-item';
 
-  // add clones for seamless looping
-  track.insertBefore(originalSlides[originalSlides.length - 1].cloneNode(true), track.firstChild);
-  track.appendChild(originalSlides[0].cloneNode(true));
+    const link = document.createElement('a');
+    link.href = `slide-detail.html?id=${item.id}`;
+
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = 'Carousel slide';
+    img.draggable = false;
+
+    const text = document.createElement('div');
+    text.className = 'slide-text';
+    text.textContent = item.text;
+
+    link.appendChild(img);
+    link.appendChild(text);
+    slide.appendChild(link);
+    return slide;
+  };
+
+  // build slides with clones for infinite scrolling
+  track.appendChild(createSlide(slideData[slideData.length - 1]));
+  slideData.forEach(item => track.appendChild(createSlide(item)));
+  track.appendChild(createSlide(slideData[0]));
+
   const slides = Array.from(track.children);
-
-  let index = 1;
+  let index = 1; // start on the first real slide
   let slideWidth = track.getBoundingClientRect().width;
-  let isMoving = false;
 
   const updateWidth = () => {
     slideWidth = track.getBoundingClientRect().width;
@@ -23,22 +44,18 @@ function initCarousel() {
   window.addEventListener('resize', updateWidth);
 
   function moveToSlide(i, animate = true) {
-    if (isMoving) return;
-    isMoving = animate;
     if (animate) track.style.transition = 'transform 0.5s ease-in-out';
     else track.style.transition = 'none';
     track.style.transform = `translateX(-${i * 100}%)`;
     index = i;
-    updateDots();
   }
 
   track.addEventListener('transitionend', () => {
     if (index === 0) {
-      moveToSlide(originalSlides.length, false);
-    } else if (index === originalSlides.length + 1) {
+      moveToSlide(slideData.length, false);
+    } else if (index === slideData.length + 1) {
       moveToSlide(1, false);
     }
-    isMoving = false;
   });
 
   const next = () => { moveToSlide(index + 1); resetInterval(); };
@@ -47,16 +64,7 @@ function initCarousel() {
   if (nextBtn) nextBtn.addEventListener('click', next);
   if (prevBtn) prevBtn.addEventListener('click', prev);
 
-  const dots = Array.from(document.querySelectorAll('.carousel-dot'));
-  function updateDots() {
-    const activeIndex = (index - 1 + originalSlides.length) % originalSlides.length;
-    dots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
-  }
-  dots.forEach((d, i) => d.addEventListener('click', () => {
-    moveToSlide(i + 1);
-    resetInterval();
-  }));
-
+  // drag/swipe support
   let isDragging = false;
   let startX = 0;
   let moveX = 0;
@@ -95,17 +103,17 @@ function initCarousel() {
   track.addEventListener('mousedown', startDrag);
   track.addEventListener('touchstart', startDrag, { passive: true });
   window.addEventListener('mousemove', duringDrag);
-  track.addEventListener('click', (e) => { if (hasMoved) e.preventDefault(); }, true);
+  track.addEventListener("click", (e) => { if (hasMoved) e.preventDefault(); }, true);
   window.addEventListener('touchmove', duringDrag, { passive: true });
   window.addEventListener('mouseup', endDrag);
   window.addEventListener('touchend', endDrag);
   window.addEventListener('mouseleave', endDrag);
 
   moveToSlide(index, false);
-  let interval = setInterval(() => moveToSlide(index + 1), 4000);
+  let interval = setInterval(() => moveToSlide(index + 1), 3000);
   function resetInterval() {
     clearInterval(interval);
-    interval = setInterval(() => moveToSlide(index + 1), 4000);
+    interval = setInterval(() => moveToSlide(index + 1), 3000);
   }
 }
 
