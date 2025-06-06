@@ -10,6 +10,9 @@ function applyTranslations(lang) {
   });
   document.documentElement.lang = lang;
   localStorage.setItem('lang', lang);
+
+  if (typeof updateProducts === 'function') updateProducts(lang);
+  if (typeof updateCarouselLang === 'function') updateCarouselLang(lang);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
