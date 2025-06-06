@@ -14,6 +14,7 @@ function initCarousel() {
 
   let index = 1;
   let slideWidth = track.getBoundingClientRect().width;
+  let isMoving = false;
 
   const updateWidth = () => {
     slideWidth = track.getBoundingClientRect().width;
@@ -22,6 +23,8 @@ function initCarousel() {
   window.addEventListener('resize', updateWidth);
 
   function moveToSlide(i, animate = true) {
+    if (isMoving) return;
+    isMoving = animate;
     if (animate) track.style.transition = 'transform 0.5s ease-in-out';
     else track.style.transition = 'none';
     track.style.transform = `translateX(-${i * 100}%)`;
@@ -35,6 +38,7 @@ function initCarousel() {
     } else if (index === originalSlides.length + 1) {
       moveToSlide(1, false);
     }
+    isMoving = false;
   });
 
   const next = () => { moveToSlide(index + 1); resetInterval(); };
