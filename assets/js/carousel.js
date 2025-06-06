@@ -3,16 +3,14 @@ function initCarousel() {
   const track = document.querySelector('.carousel-track');
   const nextBtn = document.querySelector('.carousel-button.next');
   const prevBtn = document.querySelector('.carousel-button.prev');
-  const dots = document.querySelector('.carousel-dots');
   if (!track || !Array.isArray(slideData)) return;
   track.innerHTML = '';
-  if (dots) dots.innerHTML = '';
+
   const lang = localStorage.getItem('lang') || 'en';
 
   const createSlide = (item) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-item';
-    slide.dataset.id = item.id;
 
     const link = document.createElement('a');
     link.href = `slide-detail.html?id=${item.id}`;
@@ -24,7 +22,7 @@ function initCarousel() {
 
     const text = document.createElement('div');
     text.className = 'slide-text';
-    text.textContent = (item[lang] || item.en).text;
+    text.textContent = item.text || (item[lang] ? item[lang].text : item.en.text);
 
     link.appendChild(img);
     link.appendChild(text);
@@ -36,19 +34,6 @@ function initCarousel() {
   track.appendChild(createSlide(slideData[slideData.length - 1]));
   slideData.forEach(item => track.appendChild(createSlide(item)));
   track.appendChild(createSlide(slideData[0]));
-
-  if (dots) {
-    slideData.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot';
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => {
-        moveToSlide(i + 1);
-        resetInterval();
-      });
-      dots.appendChild(dot);
-    });
-  }
 
   const slides = Array.from(track.children);
   let index = 1; // start on the first real slide
@@ -67,23 +52,12 @@ function initCarousel() {
     index = i;
   }
 
-  function updateDots() {
-    if (!dots) return;
-    const activeIndex = (index - 1 + slideData.length) % slideData.length;
-    const dotEls = dots.querySelectorAll('.carousel-dot');
-    dotEls.forEach((d, i) => {
-      if (i === activeIndex) d.classList.add('active');
-      else d.classList.remove('active');
-    });
-  }
-
   track.addEventListener('transitionend', () => {
     if (index === 0) {
       moveToSlide(slideData.length, false);
     } else if (index === slideData.length + 1) {
       moveToSlide(1, false);
     }
-    updateDots();
   });
 
   const next = () => { moveToSlide(index + 1); resetInterval(); };
@@ -145,22 +119,4 @@ function initCarousel() {
   }
 }
 
-function onReady(fn) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fn);
-  } else {
-    fn();
-  }
-}
-
-onReady(initCarousel);
-
-function updateCarouselLang(lang) {
-  document.querySelectorAll('.carousel-track .carousel-item').forEach(slide => {
-    const id = parseInt(slide.dataset.id, 10);
-    const data = slideData.find(s => s.id === id);
-    if (!data) return;
-    const text = slide.querySelector('.slide-text');
-    if (text) text.textContent = (data[lang] || data.en).text;
-  });
-}
+document.addEventListener('DOMContentLoaded', initCarousel);
