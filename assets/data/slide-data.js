@@ -1,44 +1,44 @@
 const slideData = [
   {
     id: 1,
-    image: 'https://picsum.photos/1200/400?1',
+    image: 'https://picsum.photos/400/201?1',
     en: {
-      text: 'High quality ammunition for professionals',
+      text: 'Reliable 9mm training rounds',
       details:
-        'Detailed information about our professional grade ammunition designed for reliability.'
+        'Our 9mm cartridges deliver consistent accuracy and dependable performance for daily practice.'
     },
     tr: {
-      text: 'Profesyoneller icin yüksek kaliteli mühimmat',
+      text: 'Guvenilir 9mm antrenman mermileri',
       details:
-        'Güvenilirlik için tasarlanan profesyonel mühimmatimiz hakkinda detayli bilgi.'
+        '9mm fiseklerimiz gunluk atislariniz icin istikrarlı hassasiyet ve guvenilir performans saglar.'
     }
   },
   {
     id: 2,
-    image: 'https://picsum.photos/1200/401?2',
+    image: 'https://picsum.photos/400/201?2',
     en: {
-      text: 'Precision manufacturing you can trust',
+      text: '5.56mm service ammunition built tough',
       details:
-        'Our precision processes ensure every round performs perfectly when it counts.'
+        'Designed to meet strict military specs for reliability in demanding missions.'
     },
     tr: {
-      text: 'Güvenebileceginiz hassas üretim',
+      text: 'Zorlu gorevler icin 5.56mm hizmet muhimmati',
       details:
-        'Hassas üretim süreçlerimiz her mermiye ihtiyaciniz oldugunda kusursuz performans saglar.'
+        'Zorlu gorevler icin guvenilirlik saglayan askeri standartlara uygun tasarlanmistir.'
     }
   },
   {
     id: 3,
-    image: 'https://picsum.photos/1200/402?3',
+    image: 'https://picsum.photos/400/201?3',
     en: {
-      text: 'Innovative solutions for every mission',
+      text: 'High-precision 7.62mm match grade',
       details:
-        'Discover innovative ammunition tailored for any mission requirement.'
+        'Match grade production ensures exceptional consistency shot after shot.'
     },
     tr: {
-      text: 'Her görev icin yenilikci cozumler',
+      text: 'Yuksek hassasiyetli 7.62mm yarisma serisi',
       details:
-        'Her türlü görev ihtiyacina uygun yenilikci mühimmatlari kesfedin.'
+        'Yarismaci uretim sureci her atista ustun tutarlilik saglar.'
     }
   }
 ];
