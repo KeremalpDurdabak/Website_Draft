@@ -23,5 +23,8 @@ const lang_en = {
   placeholderMessage: 'Your Message',
   buttonSend: 'Send',
   footerAddress: '123 Arsenal Road, Defense City, USA',
+  slide1Text: 'Reliable 9mm training rounds',
+  slide2Text: '5.56mm service ammunition built tough',
+  slide3Text: 'High-precision 7.62mm match grade',
   notFound: 'Not found.'
 };

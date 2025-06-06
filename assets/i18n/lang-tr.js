@@ -23,5 +23,8 @@ const lang_tr = {
   placeholderMessage: 'Mesajiniz',
   buttonSend: 'Gonder',
   footerAddress: 'Arsenal Cad. 123, Savunma Sehir, Türkiye',
+  slide1Text: 'Guvenilir 9mm antrenman mermileri',
+  slide2Text: 'Zorlu gorevler icin 5.56mm hizmet muhimmati',
+  slide3Text: 'Yuksek hassasiyetli 7.62mm yarisma serisi',
   notFound: 'Bulunamadi.'
 };
