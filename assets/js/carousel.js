@@ -11,6 +11,7 @@ function initCarousel() {
   const createSlide = (item) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-item';
+    slide.dataset.id = item.id;
 
     const link = document.createElement('a');
     link.href = `slide-detail.html?id=${item.id}`;
@@ -143,3 +144,15 @@ function initCarousel() {
 }
 
 document.addEventListener('DOMContentLoaded', initCarousel);
+
+function updateCarouselLang(lang) {
+  const items = document.querySelectorAll('.carousel-item');
+  items.forEach(slide => {
+    const id = parseInt(slide.dataset.id, 10);
+    const data = slideData.find(s => s.id === id);
+    if (!data) return;
+    const textEl = slide.querySelector('.slide-text');
+    const t = (data[lang] || data.en).text;
+    if (textEl) textEl.textContent = t;
+  });
+}
