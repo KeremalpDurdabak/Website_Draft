@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>${t.details}</p>
       <p><a href="index.html">&laquo; Back to home</a></p>`;
   } else {
-    const dict = lang === 'tr' ? lang_tr : lang_en;
+    const dict = (localStorage.getItem('lang') === 'tr') ? lang_tr : lang_en;
     container.textContent = dict.notFound;
   }
 });
