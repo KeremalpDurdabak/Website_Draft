@@ -1,158 +1,40 @@
-// Build an interactive carousel with seamless looping
 function initCarousel() {
-  const track = document.querySelector('.carousel-track');
-  const nextBtn = document.querySelector('.carousel-button.next');
-  const prevBtn = document.querySelector('.carousel-button.prev');
-  const dotsContainer = document.querySelector('.carousel-dots');
-  if (!track || !Array.isArray(slideData)) return;
-  track.innerHTML = '';
+  const carousel = document.getElementById('homeCarousel');
+  if (!carousel || !Array.isArray(slideData)) return;
 
+  const inner = carousel.querySelector('.carousel-inner');
+  const indicators = carousel.querySelector('.carousel-indicators');
+  inner.innerHTML = '';
+  indicators.innerHTML = '';
   const lang = localStorage.getItem('lang') || 'en';
-  const createSlide = (item) => {
-    const slide = document.createElement('div');
-    slide.className = 'carousel-item';
-    slide.dataset.id = item.id;
 
-    const link = document.createElement('a');
-    link.href = `slide-detail.html?id=${item.id}`;
-
-    const img = document.createElement('img');
-    img.src = item.image;
-    img.alt = 'Carousel slide';
-    img.draggable = false;
-
-    const text = document.createElement('div');
-    text.className = 'slide-text';
-    const t = item[lang] || item.en;
-    text.textContent = t.text;
-
-    link.appendChild(img);
-    link.appendChild(text);
-    slide.appendChild(link);
-    return slide;
-  };
-
-  // build slides with clones for infinite scrolling
-  track.appendChild(createSlide(slideData[slideData.length - 1]));
-  slideData.forEach(item => track.appendChild(createSlide(item)));
-  track.appendChild(createSlide(slideData[0]));
-
-  if (dotsContainer) {
-    dotsContainer.innerHTML = '';
-    slideData.forEach((_, idx) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot';
-      dot.addEventListener('click', () => { moveToSlide(idx + 1); resetInterval(); });
-      dotsContainer.appendChild(dot);
-    });
-  }
-
-  const slides = Array.from(track.children);
-  let index = 1; // start on the first real slide
-  let slideWidth = track.getBoundingClientRect().width;
-
-  const updateWidth = () => {
-    slideWidth = track.getBoundingClientRect().width;
-    moveToSlide(index, false);
-  };
-  window.addEventListener('resize', updateWidth);
-
-  function updateDots() {
-    if (!dotsContainer) return;
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-    dots.forEach((d, idx) => {
-      const active = idx === ((index - 1 + slideData.length) % slideData.length);
-      d.classList.toggle('active', active);
-    });
-  }
-
-  function moveToSlide(i, animate = true) {
-    if (animate) track.style.transition = 'transform 0.5s ease-in-out';
-    else track.style.transition = 'none';
-    track.style.transform = `translateX(-${i * 100}%)`;
-    index = i;
-    updateDots();
-  }
-
-  track.addEventListener('transitionend', () => {
-    if (index === 0) {
-      moveToSlide(slideData.length, false);
-    } else if (index === slideData.length + 1) {
-      moveToSlide(1, false);
-    }
-    updateDots();
+  slideData.forEach((item, idx) => {
+    const active = idx === 0 ? 'active' : '';
+    const text = (item[lang] || item.en).text;
+    inner.insertAdjacentHTML('beforeend', `
+      <div class="carousel-item ${active}">
+        <a href="slide-detail.html?id=${item.id}">
+          <img src="${item.image}" class="d-block w-100" alt="Carousel slide">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="slide-text">${text}</h5>
+          </div>
+        </a>
+      </div>`);
+    indicators.insertAdjacentHTML('beforeend', `
+      <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="${idx}" ${active ? 'class="active" aria-current="true"' : ''} aria-label="Slide ${idx + 1}"></button>`);
   });
 
-  const next = () => { moveToSlide(index + 1); resetInterval(); };
-  const prev = () => { moveToSlide(index - 1); resetInterval(); };
-
-  if (nextBtn) nextBtn.addEventListener('click', next);
-  if (prevBtn) prevBtn.addEventListener('click', prev);
-
-  // drag/swipe support
-  let isDragging = false;
-  let startX = 0;
-  let moveX = 0;
-  let hasMoved = false;
-
-  const getEventX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
-
-  const startDrag = (e) => {
-    e.preventDefault();
-    isDragging = true;
-    startX = getEventX(e);
-    moveX = 0;
-    hasMoved = false;
-    track.style.transition = 'none';
-  };
-
-  const duringDrag = (e) => {
-    if (!isDragging) return;
-    moveX = getEventX(e) - startX;
-    if (Math.abs(moveX) > 5) hasMoved = true;
-    const movePercent = (moveX / slideWidth) * 100;
-    track.style.transform = `translateX(calc(-${index * 100}% + ${movePercent}%))`;
-  };
-
-  const endDrag = () => {
-    if (!isDragging) return;
-    isDragging = false;
-    track.style.transition = 'transform 0.5s ease-in-out';
-    if (Math.abs(moveX) > slideWidth / 4) {
-      if (moveX < 0) index += 1; else index -= 1;
-    }
-    moveToSlide(index);
-    resetInterval();
-  };
-
-  track.addEventListener('mousedown', startDrag);
-  track.addEventListener('touchstart', startDrag, { passive: true });
-  window.addEventListener('mousemove', duringDrag);
-  track.addEventListener("click", (e) => { if (hasMoved) e.preventDefault(); }, true);
-  window.addEventListener('touchmove', duringDrag, { passive: true });
-  window.addEventListener('mouseup', endDrag);
-  window.addEventListener('touchend', endDrag);
-  window.addEventListener('mouseleave', endDrag);
-
-  moveToSlide(index, false);
-  updateDots();
-  let interval = setInterval(() => moveToSlide(index + 1), 3000);
-  function resetInterval() {
-    clearInterval(interval);
-    interval = setInterval(() => moveToSlide(index + 1), 3000);
-  }
+  new bootstrap.Carousel(carousel, { interval: 3000, ride: 'carousel' });
 }
 
 document.addEventListener('DOMContentLoaded', initCarousel);
 
 function updateCarouselLang(lang) {
-  const items = document.querySelectorAll('.carousel-item');
-  items.forEach(slide => {
-    const id = parseInt(slide.dataset.id, 10);
+  document.querySelectorAll('#homeCarousel .carousel-item').forEach(slide => {
+    const id = parseInt(slide.querySelector('a').getAttribute('href').split('=')[1], 10);
     const data = slideData.find(s => s.id === id);
     if (!data) return;
-    const textEl = slide.querySelector('.slide-text');
-    const t = (data[lang] || data.en).text;
-    if (textEl) textEl.textContent = t;
+    const caption = slide.querySelector('.slide-text');
+    if (caption) caption.textContent = (data[lang] || data.en).text;
   });
 }
