@@ -2,7 +2,7 @@
 
 This repository contains a basic multi-page website template. Pages include:
 
-- `index.html` – landing page with a simple image carousel.
+- `index.html` – landing page featuring a Bootstrap-based image carousel.
 - `products.html` – placeholder product list.
 - `about.html` – company background page.
 - `contact.html` – contact form.
