@@ -262,13 +262,17 @@ section {
         width: 200px;
         background: var(--color-bg-dark);
         padding: 1rem;
-        display: none;
         flex-direction: column;
         align-items: flex-end;
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
     }
     nav.open {
-        display: flex;
-        animation: slideDown 0.3s ease forwards;
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
     }
     nav ul {
         flex-direction: column;
@@ -279,54 +283,48 @@ section {
         display: flex;
     }
 }
-@keyframes slideDown {
-    from { transform: translateY(-10px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
 
 /* Carousel */
 .carousel {
     position: relative;
     overflow: hidden;
 }
-.carousel-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease;
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
-.carousel-slide.active {
-    opacity: 1;
+.carousel-item {
+    min-width: 100%;
     position: relative;
 }
-.carousel-slide img {
+.carousel-item img {
     width: 100%;
     height: auto;
     display: block;
+    user-select: none;
 }
 .carousel-caption {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 3px;
 }
-.carousel-arrow {
+.carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
     padding: 0.5rem;
     cursor: pointer;
+    z-index: 2;
 }
-#prev-slide { left: 10px; }
-#next-slide { right: 10px; }
+.carousel-button.prev { left: 10px; }
+.carousel-button.next { right: 10px; }
 .carousel-dots {
     position: absolute;
     bottom: 1rem;
@@ -334,6 +332,7 @@ section {
     transform: translateX(-50%);
     display: flex;
     gap: 0.5rem;
+    z-index: 2;
 }
 .carousel-dot {
     width: 10px;
