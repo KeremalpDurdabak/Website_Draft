@@ -243,60 +243,58 @@ section {
 
 
 /* Responsive navigation */
-#hamburger {
+.menu-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
-    cursor: pointer;
     background: none;
     border: none;
+    cursor: pointer;
 }
-#hamburger span {
-    width: 25px;
-    height: 3px;
+.menu-toggle .bar {
+    width: 24px;
+    height: 2px;
     background: #fff;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 0.4s, opacity 0.4s;
 }
-#hamburger.open span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+.menu-toggle.open .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
 }
-#hamburger.open span:nth-child(2) {
+.menu-toggle.open .bar:nth-child(2) {
     opacity: 0;
 }
-#hamburger.open span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+.menu-toggle.open .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
 }
 @media (max-width: 768px) {
     nav {
         position: absolute;
         top: 60px;
         right: 0;
-        width: 200px;
+        width: 220px;
         background: var(--color-bg-dark);
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        padding: 0 1rem;
-        max-height: 0;
-        overflow: hidden;
-        transform: translateY(-20px);
+        transform-origin: top;
+        transform: scaleY(0);
         opacity: 0;
         pointer-events: none;
-        transition: max-height 0.4s ease, padding 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+        transition: transform 0.3s ease, opacity 0.3s ease;
     }
     nav.open {
-        transform: translateY(0);
+        transform: scaleY(1);
         opacity: 1;
         pointer-events: auto;
-        padding: 1rem;
-        max-height: 500px;
     }
     nav ul {
         flex-direction: column;
         align-items: flex-end;
         gap: 0.5rem;
+        padding: 1rem;
     }
-    #hamburger {
+    .menu-toggle {
         display: flex;
     }
 }
@@ -357,18 +355,21 @@ section {
     z-index: 2;
 }
 .carousel-dot {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    background: #777;
+    background: #555;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
     opacity: 0.9;
-    border: 1px solid #bbb;
     cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
 }
 .carousel-dot.active {
-    opacity: 1;
     background: var(--color-accent);
     border-color: var(--color-accent);
+    box-shadow: 0 0 3px var(--color-accent);
+    opacity: 1;
 }
 .carousel.dragging {
     cursor: grabbing;

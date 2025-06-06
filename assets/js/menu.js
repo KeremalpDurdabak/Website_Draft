@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const burger = document.getElementById('hamburger');
+  const toggleBtn = document.getElementById('menu-toggle');
   const nav = document.getElementById('main-nav');
-  if (!burger || !nav) return;
+  if (!toggleBtn || !nav) return;
 
   const toggleMenu = () => {
     nav.classList.toggle('open');
-    burger.classList.toggle('open');
+    toggleBtn.classList.toggle('open');
   };
 
-  burger.addEventListener('click', toggleMenu);
+  toggleBtn.addEventListener('click', toggleMenu);
 
   nav.querySelectorAll('a').forEach(link =>
     link.addEventListener('click', () => {
@@ -17,7 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   document.addEventListener('click', (e) => {
-    if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== burger) {
+    if (nav.classList.contains('open') &&
+        !nav.contains(e.target) &&
+        e.target !== toggleBtn &&
+        !toggleBtn.contains(e.target)) {
       toggleMenu();
     }
   });
