@@ -3,8 +3,7 @@ function initCarousel() {
   const track = document.querySelector('.carousel-track');
   const nextBtn = document.querySelector('.carousel-button.next');
   const prevBtn = document.querySelector('.carousel-button.prev');
-  if (!track || !Array.isArray(slideData)) return;
-  track.innerHTML = '';
+  if (!track) return;
 
   const lang = localStorage.getItem('lang') || 'en';
 
@@ -30,12 +29,18 @@ function initCarousel() {
     return slide;
   };
 
-  // build slides with clones for infinite scrolling
-  track.appendChild(createSlide(slideData[slideData.length - 1]));
-  slideData.forEach(item => track.appendChild(createSlide(item)));
-  track.appendChild(createSlide(slideData[0]));
+  if (track.children.length === 0 && Array.isArray(slideData)) {
+    slideData.forEach(item => track.appendChild(createSlide(item)));
+  }
+
+  // clone first and last slides for seamless looping
+  const firstClone = track.firstElementChild.cloneNode(true);
+  const lastClone = track.lastElementChild.cloneNode(true);
+  track.insertBefore(lastClone, track.firstElementChild);
+  track.appendChild(firstClone);
 
   const slides = Array.from(track.children);
+  const totalSlides = slides.length;
   let index = 1; // start on the first real slide
   let slideWidth = track.getBoundingClientRect().width;
 
@@ -54,8 +59,8 @@ function initCarousel() {
 
   track.addEventListener('transitionend', () => {
     if (index === 0) {
-      moveToSlide(slideData.length, false);
-    } else if (index === slideData.length + 1) {
+      moveToSlide(totalSlides - 2, false);
+    } else if (index === totalSlides - 1) {
       moveToSlide(1, false);
     }
   });
