@@ -23,5 +23,11 @@ const lang_en = {
   placeholderMessage: 'Your Message',
   buttonSend: 'Send',
   footerAddress: '123 Arsenal Road, Defense City, USA',
-  notFound: 'Not found.'
+  notFound: 'Not found.',
+  carouselHeading1: 'Trusted Performance',
+  carouselText1: 'Precision ammunition for every mission.',
+  carouselHeading2: 'Engineered for Reliability',
+  carouselText2: 'Consistent quality round after round.',
+  carouselHeading3: 'Innovating Ammunition',
+  carouselText3: 'Advancing technology for defense.'
 };

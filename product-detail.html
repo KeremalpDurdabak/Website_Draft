@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AYES DEFENSE CORPORATION provides premium ammunition for defense and sporting markets.">
     <title>AYES DEFENSE CORPORATION</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +14,7 @@
     <script src="assets/i18n/lang-en.js"></script>
     <script src="assets/i18n/lang-tr.js"></script>
     <script src="assets/js/i18n.js" defer></script>
+    <script src="assets/js/menu.js" defer></script>
 </head>
 <body>
     <header>
@@ -21,7 +23,10 @@
                 <img src="assets/images/logo.svg" alt="AYES DEFENSE CORPORATION logo">
                 <span data-i18n="companyName">AYES DEFENSE CORPORATION</span>
             </a>
-            <nav>
+            <button id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="index.html" data-i18n="navHome">Home</a></li>
                     <li><a href="products.html" data-i18n="navProducts">Products</a></li>
