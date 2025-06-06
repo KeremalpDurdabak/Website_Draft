@@ -153,10 +153,15 @@ section {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: #fff;
+    background: rgba(255,255,255,0.7);
+    color: #333;
     border: none;
-    padding: 0.5rem 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 40px;
+    text-align: center;
     cursor: pointer;
     z-index: 1;
     user-select: none;
@@ -164,6 +169,29 @@ section {
 
 .carousel-button.prev { left: 10px; }
 .carousel-button.next { right: 10px; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 1;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    border: none;
+    cursor: pointer;
+}
+
+.carousel-dot.active {
+    background: #fff;
+}
 
 .carousel-track {
     display: flex;

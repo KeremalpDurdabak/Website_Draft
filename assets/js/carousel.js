@@ -3,6 +3,7 @@ function initCarousel() {
   const track = document.querySelector('.carousel-track');
   const nextBtn = document.querySelector('.carousel-button.next');
   const prevBtn = document.querySelector('.carousel-button.prev');
+  const dotsContainer = document.querySelector('.carousel-dots');
   if (!track || !Array.isArray(slideData)) return;
   track.innerHTML = '';
 
@@ -35,6 +36,16 @@ function initCarousel() {
   slideData.forEach(item => track.appendChild(createSlide(item)));
   track.appendChild(createSlide(slideData[0]));
 
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    slideData.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.addEventListener('click', () => { moveToSlide(idx + 1); resetInterval(); });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
   const slides = Array.from(track.children);
   let index = 1; // start on the first real slide
   let slideWidth = track.getBoundingClientRect().width;
@@ -45,11 +56,21 @@ function initCarousel() {
   };
   window.addEventListener('resize', updateWidth);
 
+  function updateDots() {
+    if (!dotsContainer) return;
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    dots.forEach((d, idx) => {
+      const active = idx === ((index - 1 + slideData.length) % slideData.length);
+      d.classList.toggle('active', active);
+    });
+  }
+
   function moveToSlide(i, animate = true) {
     if (animate) track.style.transition = 'transform 0.5s ease-in-out';
     else track.style.transition = 'none';
     track.style.transform = `translateX(-${i * 100}%)`;
     index = i;
+    updateDots();
   }
 
   track.addEventListener('transitionend', () => {
@@ -58,6 +79,7 @@ function initCarousel() {
     } else if (index === slideData.length + 1) {
       moveToSlide(1, false);
     }
+    updateDots();
   });
 
   const next = () => { moveToSlide(index + 1); resetInterval(); };
@@ -112,6 +134,7 @@ function initCarousel() {
   window.addEventListener('mouseleave', endDrag);
 
   moveToSlide(index, false);
+  updateDots();
   let interval = setInterval(() => moveToSlide(index + 1), 3000);
   function resetInterval() {
     clearInterval(interval);

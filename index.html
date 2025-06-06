@@ -36,36 +36,24 @@
         <section class="hero">
             <div class="carousel">
                 <button class="carousel-button prev">&#10094;</button>
-                <div class="carousel-track">
-                </div>
+                <div class="carousel-track"></div>
                 <button class="carousel-button next">&#10095;</button>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2 data-i18n="aboutHeading">About Us</h2>
+                <p data-i18n="aboutPara1">AYES DEFENSE CORPORATION supplies premium ammunition to government and civilian markets.</p>
+                <p data-i18n="aboutPara2">With decades of experience, we focus on safety, precision and lasting partnerships.</p>
             </div>
         </section>
 
         <section>
             <div class="container">
-                <h2 data-i18n="welcomeHeading">Welcome to AYES DEFENSE CORPORATION</h2>
-                <p data-i18n="welcomeText">We provide state-of-the-art ammunition solutions for defense and sporting needs. This is placeholder text you can replace with your own content.</p>
-            </div>
-        </section>
-
-        <section class="features">
-            <div class="container">
-                <div class="feature">
-                    <img src="https://picsum.photos/400/300" alt="Precision">
-                    <h3 data-i18n="featuresPrecisionHeading">Precision Engineering</h3>
-                    <p data-i18n="featuresPrecisionText">Every round is manufactured with exacting tolerances for superior accuracy.</p>
-                </div>
-                <div class="feature">
-                    <img src="https://picsum.photos/400/301" alt="Reliability">
-                    <h3 data-i18n="featuresReliabilityHeading">Reliable Performance</h3>
-                    <p data-i18n="featuresReliabilityText">Our ammunition is tested to perform flawlessly in any environment.</p>
-                </div>
-                <div class="feature">
-                    <img src="https://picsum.photos/400/302" alt="Innovation">
-                    <h3 data-i18n="featuresInnovationHeading">Innovative Solutions</h3>
-                    <p data-i18n="featuresInnovationText">We continually develop new products to meet evolving mission needs.</p>
-                </div>
+                <h2 data-i18n="ourProductsHeading">Our Products</h2>
+                <div id="home-products" class="products"></div>
             </div>
         </section>
     </main>
@@ -78,5 +66,13 @@
 
     <script src="assets/data/slide-data.js"></script>
     <script src="assets/js/carousel.js"></script>
+    <script src="assets/data/product-data.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('lang') || 'en';
+            if (typeof updateProducts === 'function') updateProducts(lang);
+        });
+    </script>
 </body>
 </html>
