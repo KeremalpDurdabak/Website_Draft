@@ -88,42 +88,32 @@ section {
     border-radius: 5px;
 }
 
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+
+.features .container {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .feature {
-    flex: 1 1 30%;
-    max-width: 32%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
     background: #f4f4f4;
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 5px;
-    text-align: center;
 }
 
 .feature img {
-    width: 100%;
+    width: 200px;
     height: auto;
-    margin-bottom: 0.5rem;
     border-radius: 5px;
-}
-
-@media (max-width: 800px) {
-    .feature {
-        flex: 1 1 45%;
-        max-width: 48%;
-    }
+    flex-shrink: 0;
 }
 
 @media (max-width: 600px) {
     nav ul {
         flex-direction: column;
-    }
-    .feature {
-        flex: 1 1 100%;
-        max-width: 100%;
     }
 }
 
