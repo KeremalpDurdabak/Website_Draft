@@ -22,5 +22,6 @@ const productData = [
     short: 'Maecenas luctus massa non urna tristique, nec sagittis nulla fringilla.',
     details: 'Detailed information about Product 3. Maecenas luctus massa non urna tristique, nec sagittis nulla fringilla.',
     largeImage: 'https://picsum.photos/800/402?3'
+>>>>>>> main
   }
 ];
