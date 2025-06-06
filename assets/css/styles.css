@@ -194,14 +194,12 @@ section {
     flex-shrink: 0;
     position: relative;
     user-select: none;
-    height: 60vh;
-    min-height: 400px;
+    height: 400px;
 }
 
 @media (max-width: 768px) {
     .carousel-item {
-        height: 40vh;
-        min-height: 250px;
+        height: 250px;
     }
 }
 
@@ -225,7 +223,7 @@ section {
     color: #fff;
     background: rgba(0, 0, 0, 0.6);
     padding: 1rem 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
     text-align: center;
     text-shadow: 0 2px 4px rgba(0,0,0,0.6);
@@ -236,17 +234,16 @@ section {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     color: #fff;
     cursor: pointer;
-    font-size: 1.25rem;
 }
 .carousel-button.prev { left: 10px; }
 .carousel-button.next { right: 10px; }
@@ -254,15 +251,15 @@ section {
 .carousel-dots {
     position: absolute;
     left: 50%;
-    bottom: 15px;
+    bottom: 10px;
     transform: translateX(-50%);
     display: flex;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .carousel-dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
     border: none;
@@ -271,7 +268,7 @@ section {
 }
 
 .carousel-dot.active {
-    background: var(--color-accent);
+    background: #fff;
 }
 
 .about {
