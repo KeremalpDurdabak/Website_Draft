@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ammo Corp</title>
+    <title>AYES DEFENSE CORPORATION</title>
+    <link rel="icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/i18n/lang-en.js"></script>
+    <script src="assets/i18n/lang-tr.js"></script>
+    <script src="assets/js/i18n.js" defer></script>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Ammo Corp</h1>
+            <a class="logo" href="index.html">
+                <img src="assets/images/logo.svg" alt="AYES DEFENSE CORPORATION logo">
+                <span data-i18n="companyName">AYES DEFENSE CORPORATION</span>
+            </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+                    <li><a href="products.html" data-i18n="navProducts">Products</a></li>
+                    <li><a href="about.html" data-i18n="navAbout">About</a></li>
+                    <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
                 </ul>
             </nav>
+            <select id="lang-switch">
+                <option value="en">EN</option>
+                <option value="tr">TR</option>
+            </select>
         </div>
     </header>
 
@@ -33,8 +44,8 @@
 
         <section>
             <div class="container">
-                <h2>Welcome to Ammo Corp</h2>
-                <p>We provide state-of-the-art ammunition solutions for defense and sporting needs. This is placeholder text you can replace with your own content.</p>
+                <h2 data-i18n="welcomeHeading">Welcome to AYES DEFENSE CORPORATION</h2>
+                <p data-i18n="welcomeText">We provide state-of-the-art ammunition solutions for defense and sporting needs. This is placeholder text you can replace with your own content.</p>
             </div>
         </section>
 
@@ -42,18 +53,18 @@
             <div class="container">
                 <div class="feature">
                     <img src="https://picsum.photos/400/300" alt="Precision">
-                    <h3>Precision Engineering</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3 data-i18n="featuresPrecisionHeading">Precision Engineering</h3>
+                    <p data-i18n="featuresPrecisionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
                 <div class="feature">
                     <img src="https://picsum.photos/400/301" alt="Reliability">
-                    <h3>Reliable Performance</h3>
-                    <p>Nulla facilisi. Sed pulvinar nisl sit amet elit finibus.</p>
+                    <h3 data-i18n="featuresReliabilityHeading">Reliable Performance</h3>
+                    <p data-i18n="featuresReliabilityText">Nulla facilisi. Sed pulvinar nisl sit amet elit finibus.</p>
                 </div>
                 <div class="feature">
                     <img src="https://picsum.photos/400/302" alt="Innovation">
-                    <h3>Innovative Solutions</h3>
-                    <p>Morbi et ante vel libero molestie tempus vel quis sapien.</p>
+                    <h3 data-i18n="featuresInnovationHeading">Innovative Solutions</h3>
+                    <p data-i18n="featuresInnovationText">Morbi et ante vel libero molestie tempus vel quis sapien.</p>
                 </div>
             </div>
         </section>
@@ -61,11 +72,11 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Ammo Corp</p>
+            <p>&copy; 2024 <span data-i18n="companyName">AYES DEFENSE CORPORATION</span></p>
         </div>
     </footer>
 
-    <script src="assets/js/slide-data.js"></script>
+    <script src="assets/data/slide-data.js"></script>
     <script src="assets/js/carousel.js"></script>
 </body>
 </html>

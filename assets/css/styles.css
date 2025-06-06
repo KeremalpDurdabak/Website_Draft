@@ -18,6 +18,30 @@ header, footer {
     padding: 1rem 0;
 }
 
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.logo img {
+    height: 40px;
+}
+
+#lang-switch {
+    margin-left: 1rem;
+}
+
 nav ul {
     list-style: none;
     display: flex;
