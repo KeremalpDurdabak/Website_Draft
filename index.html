@@ -42,22 +42,20 @@
 
     <main>
         <section class="hero">
-            <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators"></div>
-                <div class="carousel-inner"></div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
-                    <span class="fa-solid fa-chevron-left" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+            <div id="homeCarousel" class="carousel">
+                <div class="carousel-track"></div>
+                <button class="carousel-button prev" aria-label="Previous">
+                    <span class="fa-solid fa-chevron-left"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
-                    <span class="fa-solid fa-chevron-right" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                <button class="carousel-button next" aria-label="Next">
+                    <span class="fa-solid fa-chevron-right"></span>
                 </button>
+                <div class="carousel-dots"></div>
             </div>
         </section>
 
         <section class="about">
-            <div class="container about-typing">
+            <div class="container">
                 <h2 data-i18n="aboutHeading">About Us</h2>
                 <p data-i18n="aboutPara1">AYES DEFENSE CORPORATION supplies premium ammunition to government and civilian markets.</p>
                 <p data-i18n="aboutPara2">With decades of experience, we focus on safety, precision and lasting partnerships.</p>
@@ -92,7 +90,6 @@
     <script src="assets/data/product-data.js"></script>
     <script src="assets/js/products.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/typing.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const lang = localStorage.getItem('lang') || 'en';
