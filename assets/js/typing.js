@@ -1,16 +1,28 @@
-function typeWrite(selector, speed = 40) {
-  document.querySelectorAll(selector).forEach(el => {
+function typeWriteSequential(elements, speed = 40) {
+  let index = 0;
+  function typeNext() {
+    if (index >= elements.length) return;
+    const el = elements[index];
     const text = el.textContent;
     el.textContent = '';
     let i = 0;
     const timer = setInterval(() => {
       el.textContent += text.charAt(i);
       i++;
-      if (i >= text.length) clearInterval(timer);
+      if (i >= text.length) {
+        clearInterval(timer);
+        index++;
+        typeNext();
+      }
     }, speed);
-  });
+  }
+  typeNext();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  typeWrite('.about-typing p');
+  const aboutSection = document.querySelector('.about-typing');
+  if (aboutSection) {
+    const items = aboutSection.querySelectorAll('h2, p');
+    typeWriteSequential(items);
+  }
 });
