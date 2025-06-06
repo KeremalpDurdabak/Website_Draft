@@ -23,5 +23,11 @@ const lang_tr = {
   placeholderMessage: 'Mesajiniz',
   buttonSend: 'Gonder',
   footerAddress: 'Arsenal Cad. 123, Savunma Sehir, Türkiye',
-  notFound: 'Bulunamadi.'
+  notFound: 'Bulunamadi.',
+  carouselHeading1: 'Guvenilir Performans',
+  carouselText1: 'Her görev icin hassas mühimmat.',
+  carouselHeading2: 'Guvenilirlik Icin Tasarlandi',
+  carouselText2: 'Her atista tutarli kalite.',
+  carouselHeading3: 'Mühimmatta Yenilik',
+  carouselText3: 'Savunma teknolojisinde ilerleme.'
 };
