@@ -22,5 +22,6 @@ const lang_en = {
   placeholderEmail: 'Your Email',
   placeholderMessage: 'Your Message',
   buttonSend: 'Send',
+  footerAddress: '123 Arsenal Road, Defense City, USA',
   notFound: 'Not found.'
 };

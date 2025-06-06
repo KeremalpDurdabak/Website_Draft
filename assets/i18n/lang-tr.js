@@ -22,5 +22,6 @@ const lang_tr = {
   placeholderEmail: 'E-posta Adresiniz',
   placeholderMessage: 'Mesajiniz',
   buttonSend: 'Gonder',
+  footerAddress: 'Arsenal Cad. 123, Savunma Sehir, Türkiye',
   notFound: 'Bulunamadi.'
 };
