@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>${slide.details}</p>
       <p><a href="index.html">&laquo; Back to home</a></p>`;
   } else {
-    container.textContent = 'Slide not found.';
+    const dict = (localStorage.getItem('lang') === 'tr') ? lang_tr : lang_en;
+    container.textContent = dict.notFound;
   }
 });
