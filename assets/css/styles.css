@@ -63,6 +63,15 @@ header .container {
     margin-left: 1rem;
 }
 
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 button {
     background-color: var(--color-accent);
     color: #fff;
@@ -149,9 +158,28 @@ section {
     flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-    nav ul {
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+    header nav {
+        display: none;
+        width: 100%;
+    }
+    header nav.open {
+        display: block;
+    }
+    header nav ul {
         flex-direction: column;
+        gap: 0;
+        background: var(--color-bg-dark);
+    }
+    header nav li {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    header nav a {
+        display: block;
+        padding: 0.75rem 1rem;
     }
 }
 
@@ -192,18 +220,23 @@ section {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--color-accent);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    border: none;
-    width: 40px;
-    height: 40px;
+    border: 2px solid #fff;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    font-size: 1.2rem;
-    line-height: 40px;
+    font-size: 1.5rem;
+    line-height: 46px;
     text-align: center;
     cursor: pointer;
     z-index: 1;
     user-select: none;
+    transition: background 0.3s;
+}
+
+.carousel-button:hover {
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .carousel-button.prev { left: 10px; }
@@ -220,12 +253,13 @@ section {
 }
 
 .carousel-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.5);
-    border: none;
+    background: transparent;
+    border: 2px solid #fff;
     cursor: pointer;
+    transition: background 0.3s;
 }
 
 .carousel-dot.active {
@@ -244,6 +278,12 @@ section {
     position: relative;
     user-select: none;
     height: 400px;
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 250px;
+    }
 }
 
 .carousel-item a {
@@ -271,6 +311,8 @@ section {
     font-weight: bold;
     text-align: center;
     max-width: 90%;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    pointer-events: none;
 }
 
 .about {
