@@ -242,62 +242,6 @@ section {
 }
 
 
-/* Responsive navigation */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-.menu-toggle .bar {
-    width: 24px;
-    height: 2px;
-    background: #fff;
-    transition: transform 0.4s, opacity 0.4s;
-}
-.menu-toggle.open .bar:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-}
-.menu-toggle.open .bar:nth-child(2) {
-    opacity: 0;
-}
-.menu-toggle.open .bar:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-}
-@media (max-width: 768px) {
-    nav {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 220px;
-        background: var(--color-bg-dark);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        transform-origin: top;
-        transform: scaleY(0);
-        opacity: 0;
-        pointer-events: none;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    nav.open {
-        transform: scaleY(1);
-        opacity: 1;
-        pointer-events: auto;
-    }
-    nav ul {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 0.5rem;
-        padding: 1rem;
-    }
-    .menu-toggle {
-        display: flex;
-    }
-}
 
 /* Carousel */
 .carousel {
@@ -333,43 +277,49 @@ section {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    background: rgba(25, 25, 25, 0.7);
     color: #fff;
-    border: none;
-    padding: 0.5rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     z-index: 2;
+    transition: background 0.3s, border-color 0.3s;
+}
+.carousel-button:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
 }
 .carousel-button.prev { left: 10px; }
 .carousel-button.next { right: 10px; }
 .carousel-dots {
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 0.5rem;
-    padding: 0.25rem 0.6rem;
-    background: rgba(0, 0, 0, 0.4);
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(25, 25, 25, 0.7);
+    border: 1px solid #fff;
     border-radius: 1rem;
     z-index: 2;
 }
 .carousel-dot {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: #555;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
-    opacity: 0.9;
-    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #fff;
     transition: background 0.3s, border-color 0.3s;
 }
 .carousel-dot.active {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    box-shadow: 0 0 3px var(--color-accent);
-    opacity: 1;
 }
 .carousel.dragging {
     cursor: grabbing;
