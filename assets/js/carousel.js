@@ -6,6 +6,7 @@ function initCarousel() {
   if (!track || !Array.isArray(slideData)) return;
   track.innerHTML = '';
 
+  const lang = localStorage.getItem('lang') || 'en';
   const createSlide = (item) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-item';
@@ -20,7 +21,8 @@ function initCarousel() {
 
     const text = document.createElement('div');
     text.className = 'slide-text';
-    text.textContent = item.text;
+    const t = item[lang] || item.en;
+    text.textContent = t.text;
 
     link.appendChild(img);
     link.appendChild(text);

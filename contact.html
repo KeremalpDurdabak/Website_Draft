@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Ammo Corp</title>
+    <title>AYES DEFENSE CORPORATION</title>
+    <link rel="icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/i18n/lang-en.js"></script>
+    <script src="assets/i18n/lang-tr.js"></script>
+    <script src="assets/js/i18n.js" defer></script>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Ammo Corp</h1>
+            <a class="logo" href="index.html">
+                <img src="assets/images/logo.svg" alt="AYES DEFENSE CORPORATION logo">
+                <span data-i18n="companyName">AYES DEFENSE CORPORATION</span>
+            </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+                    <li><a href="products.html" data-i18n="navProducts">Products</a></li>
+                    <li><a href="about.html" data-i18n="navAbout">About</a></li>
+                    <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
                 </ul>
             </nav>
+            <select id="lang-switch">
+                <option value="en">EN</option>
+                <option value="tr">TR</option>
+            </select>
         </div>
     </header>
 
@@ -27,13 +38,13 @@
         </section>
         <section>
             <div class="container">
-                <h2>Contact Us</h2>
-                <p>Feel free to reach out using the form below. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2 data-i18n="contactHeading">Contact Us</h2>
+                <p data-i18n="contactIntro">Feel free to reach out using the form below.</p>
                 <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send</button>
+                    <input type="text" data-i18n-placeholder="placeholderName" required>
+                    <input type="email" data-i18n-placeholder="placeholderEmail" required>
+                    <textarea rows="5" data-i18n-placeholder="placeholderMessage" required></textarea>
+                    <button type="submit" data-i18n="buttonSend">Send</button>
                 </form>
             </div>
         </section>
@@ -41,7 +52,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Ammo Corp</p>
+            <p>&copy; 2024 <span data-i18n="companyName">AYES DEFENSE CORPORATION</span></p>
         </div>
     </footer>
 </body>
